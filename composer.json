@@ -9,5 +9,8 @@
             "email": "justin@dsgnwrks.pro"
         }
     ],
+	"autoload": {
+		"classmap": [ "PHPUnitHelperAssertionsTrait.php" ]
+	},
     "require": {}
 }
