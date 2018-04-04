@@ -1,0 +1,13 @@
+{
+    "name": "jtsternberg/phpunit-helper-assertions",
+    "description": "Additional helpful phpunit assertions.",
+    "type": "library",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Justin Sternberg",
+            "email": "justin@dsgnwrks.pro"
+        }
+    ],
+    "require": {}
+}
