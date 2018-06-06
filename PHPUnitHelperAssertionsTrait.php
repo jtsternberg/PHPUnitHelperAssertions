@@ -71,18 +71,20 @@ trait PHPUnitHelperAssertionsTrait {
 	 * @param  array  $expected_arr The expected result.
 	 * @param  array  $test_arr     The array to compare.
 	 */
-	public function assertSameArray( $expected_arr, $test_arr ) {
-		$message = false;
+	public function assertSameArray( $expected_arr, $test_arr, $message = false ) {
+		$msg = false;
 
 		if ( $expected_arr !== $test_arr ) {
 			// A more helpful fail message.
 			$diff = self::diffArrays( $expected_arr, $test_arr );
-			$message = "Failed asserting that arrays are the same. More info:\n\n";
+			$msg = "Failed asserting that arrays are the same. More info:\n\n";
 			if ( empty( $diff['removed'] ) && empty( $diff['added'] ) ) {
-				$message .= self::compareArraysAsStrings( $expected_arr, $test_arr );
+				$msg .= self::compareArraysAsStrings( $expected_arr, $test_arr );
 			} else {
-				$message .= sprintf( "Should not have: %s\nMissing: %s", print_r( $diff['removed'], true ), print_r( $diff['added'], true ) );
+				$msg .= sprintf( "Should not have: %s\nMissing: %s", print_r( $diff['removed'], true ), print_r( $diff['added'], true ) );
 			}
+
+			$message = $message ? ( $msg . "\n\n" . $message ) : $msg;
 		}
 
 		$this->assertSame(
