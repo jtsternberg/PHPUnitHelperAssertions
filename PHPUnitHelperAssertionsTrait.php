@@ -3,7 +3,7 @@
  * Helpful Assertions for PHPUnit.
  *
  * @since   0.1.0
- * @version 0.1.1
+ * @version 0.2.0
  * @package PHPUnitHelperAssertions
  */
 trait PHPUnitHelperAssertionsTrait {
@@ -99,7 +99,7 @@ trait PHPUnitHelperAssertionsTrait {
 	/**
 	 * Asserts that array has all the given keys.
 	 *
-	 * @since 0.1.1
+	 * @since 0.2.0
 	 *
 	 * @param array $keys  The array of keys to check.
 	 * @param array $array The array to compare.
@@ -305,7 +305,7 @@ trait PHPUnitHelperAssertionsTrait {
 	/**
 	 * A var_export wrapper for better formatting.
 	 *
-	 * @since  0.1.1
+	 * @since  0.2.0
 	 *
 	 * @param  mixed  $var   The variable to output.
 	 * @param  string $label The label for the output.
