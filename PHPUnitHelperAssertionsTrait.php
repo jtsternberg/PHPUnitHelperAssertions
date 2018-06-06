@@ -3,6 +3,7 @@
  * Helpful Assertions for PHPUnit.
  *
  * @since   0.1.0
+ * @version 0.1.1
  * @package PHPUnitHelperAssertions
  */
 trait PHPUnitHelperAssertionsTrait {
@@ -68,8 +69,9 @@ trait PHPUnitHelperAssertionsTrait {
 	 *
 	 * @since  0.1.0
 	 *
-	 * @param  array  $expected_arr The expected result.
-	 * @param  array  $test_arr     The array to compare.
+	 * @param array        $expected_arr The expected result.
+	 * @param array        $test_arr     The array to compare.
+	 * @param string|false $message      Optional additional message on failure.
 	 */
 	public function assertSameArray( $expected_arr, $test_arr, $message = false ) {
 		$msg = false;
@@ -93,6 +95,25 @@ trait PHPUnitHelperAssertionsTrait {
 			$message
 		);
 	}
+
+	/**
+	 * Asserts that array has all the given keys.
+	 *
+	 * @since 0.1.1
+	 *
+	 * @param array $keys  The array of keys to check.
+	 * @param array $array The array to compare.
+	 * @param string|false $message      Optional additional message on failure.
+	 */
+	public function assertArrayKeysExist( $keys, $array, $message = false ) {
+		$expected = array_flip( $keys );
+		$this->assertSameArray(
+			$expected,
+			array_intersect_key( $expected, $array ),
+			$message ? $message : self::varExport( $array )
+		);
+	}
+
 
 	/**
 	 * Asserts that two variables have the same type and value.
@@ -279,6 +300,20 @@ trait PHPUnitHelperAssertionsTrait {
 		$method->setAccessible( true );
 
 		return $method->invokeArgs( $object, $parameters );
+	}
+
+	/**
+	 * A var_export wrapper for better formatting.
+	 *
+	 * @since  0.1.1
+	 *
+	 * @param  mixed  $var   The variable to output.
+	 * @param  string $label The label for the output.
+	 *
+	 * @return string        The outputted variable.
+	 */
+	public static function varExport( $var, $label = "Given Array:\n\n" ) {
+		return $label . preg_replace( array( "/  /", "/\s+=>\s+/" ), array( "\t", " => " ), str_replace( array( 'stdClass::__set_state', 'array (', "=> \n ", "=> \r " ), array( '(object) ', 'array(', '=>' ), var_export( $var, true ) ) ) .';';
 	}
 
 	// protected static function ns( $append = '' ) {
