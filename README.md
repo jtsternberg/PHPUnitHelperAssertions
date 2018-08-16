@@ -1,4 +1,4 @@
-# PHPUnitHelperAssertionsTrait (v0.2.0)
+# PHPUnitHelperAssertionsTrait (v0.3.0)
 
 Additional helpful phpunit assertions. To use in your PHPUnit tests, [add using the `use` statement](http://php.net/manual/en/language.oop5.traits.php).
 
