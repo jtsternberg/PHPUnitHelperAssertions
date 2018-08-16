@@ -74,6 +74,21 @@ trait PHPUnitHelperAssertionsTrait {
 	}
 
 	/**
+	 * Asserts that 2 arrays are the same (after sorting) or outputs helpful message showing missing values.
+	 *
+	 * @since  0.3.0
+	 *
+	 * @param array        $expected_arr The expected result.
+	 * @param array        $test_arr     The array to compare.
+	 * @param string|false $message      Optional additional message on failure.
+	 */
+	public function assertSameSortedArray( $expected_arr, $test_arr, $message = false ) {
+		ksort( $expected_arr );
+		ksort( $test_arr );
+		self::assertSameArray( $expected_arr, $test_arr, $message );
+	}
+
+	/**
 	 * Asserts that 2 arrays are the same or outputs helpful message showing missing values.
 	 *
 	 * @since  0.1.0
