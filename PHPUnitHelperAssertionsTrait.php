@@ -327,6 +327,24 @@ trait PHPUnitHelperAssertionsTrait {
 	}
 
 	/**
+	 * Call protected/private method of a class.
+	 *
+	 * @since  0.3.0
+	 *
+	 * @param object $object       Instantiated object that we will run method on.
+	 * @param string $propertyName Property name to get.
+	 *
+	 * @return mixed               Property value.
+	 */
+	protected function readProperty( $object, $propertyName ) {
+		$class = new \ReflectionClass( get_class( $object ) );
+		$property = $class->getProperty( $propertyName );
+		$property->setAccessible(true);
+
+		return $property->getValue( $object );
+	}
+
+	/**
 	 * A var_export wrapper for better formatting.
 	 *
 	 * @since  0.2.0
