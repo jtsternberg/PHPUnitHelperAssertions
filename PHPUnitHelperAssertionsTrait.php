@@ -42,12 +42,13 @@ trait PHPUnitHelperAssertionsTrait {
 	 *
 	 * @param  string  $expected_string The expected result..
 	 * @param  string  $string_to_test  The string to compare.
+	 * @param  string|false $message    Optional additional message on failure.
 	 */
-	public function assertHTMLstringsAreEqual( $expected_string, $string_to_test ) {
+	public function assertHTMLstringsAreEqual( $expected_string, $string_to_test, $message = false ) {
 		$expected_string = $this->normalizeString( $expected_string );
 		$string_to_test = $this->normalizeString( $string_to_test );
 
-		$this->assertStringsAreEqual( $expected_string, $string_to_test );
+		$this->assertStringsAreEqual( $expected_string, $string_to_test, $message );
 	}
 
 	/**
@@ -57,11 +58,19 @@ trait PHPUnitHelperAssertionsTrait {
 	 *
 	 * @param  string  $expected_string The expected result..
 	 * @param  string  $string_to_test  The string to compare.
+	 * @param  string|false $message    Optional additional message on failure.
 	 */
-	public function assertStringsAreEqual( $expected_string, $string_to_test ) {
+	public function assertStringsAreEqual( $expected_string, $string_to_test, $message = false ) {
 		$compare = $this->compareStrings( $expected_string, $string_to_test );
+		$msg = ! empty( $compare ) ? $compare : null;
 
-		$this->assertEquals( $expected_string, $string_to_test, ! empty( $compare ) ? $compare : null );
+		if ( false !== $message ) {
+			$msg = null === $msg
+				? $message
+				: $msg . "\n\n" . $message;
+		}
+
+		$this->assertEquals( $expected_string, $string_to_test, $msg );
 	}
 
 	/**
