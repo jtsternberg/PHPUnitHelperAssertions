@@ -1,3 +1,7 @@
+0.3.1 / 2020-07-07
+
+* Fixed "Fatal error: Declaration of PHPUnitHelperAssertionsTrait::assertSame($expected, $actual, $message = '') must be compatible with PHPUnit\Framework\Assert::assertSame($expected, $actual, string $message = ''):"
+
 0.3.0 / 2018-08-16
 ==================
 
