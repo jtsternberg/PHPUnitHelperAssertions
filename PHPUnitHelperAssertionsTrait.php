@@ -70,7 +70,7 @@ trait PHPUnitHelperAssertionsTrait {
 				: $msg . "\n\n" . $message;
 		}
 
-		$this->assertEquals( $expected_string, $string_to_test, $msg );
+		$this->assertEquals( $expected_string, $string_to_test, $msg ? $msg : '' );
 	}
 
 	/**
