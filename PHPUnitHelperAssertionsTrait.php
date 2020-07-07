@@ -150,7 +150,7 @@ trait PHPUnitHelperAssertionsTrait {
 	 * @param mixed  $actual
 	 * @param string $message
 	 */
-	public static function assertSame( $expected, $actual, $message = '' ) {
+	public static function assertSame( $expected, $actual, string $message = '' ) : void {
 		try {
 			parent::assertSame( $expected, $actual, $message );
 		} catch ( \Exception $e ) {
